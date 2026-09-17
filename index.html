@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+const u = "Reeyuki"
+const r = "YukiOsSingleHtml"
+const b = "latest"
+const p = "index.html"
+const f = ""
+
+const urls = [
+`https://cdn.jsdelivr.net/gh/${u}/${r}@${b}/${p}${f}`,
+`https://quantil.jsdelivr.net/gh/${u}/${r}@${b}/${p}${f}`,
+`https://originfastly.jsdelivr.net/gh/${u}/${r}@${b}/${p}${f}`,
+`https://gcore.jsdelivr.net/gh/${u}/${r}@${b}/${p}${f}`,
+`https://esm.sh/gh/${u}/${r}@${b}/${p}${f}`,
+`https://cdn.statically.io/gh/${u}/${r}@${b}/${p}${f}`,
+`https://cdn.staticdelivr.com/gh/${u}/${r}/${b}/${p}${f}`
+]
+
+async function load() {
+for (let i = 0; i < urls.length; i++) {
+try {
+const res = await fetch(urls[i] + "?v=" + Date.now())
+if (res.ok) {
+const h = await res.text()
+document.open()
+document.write(h)
+document.close()
+return
+}
+} catch (e) {}
+}
+}
+
+load()
+</script>
+</body>
+</html>
